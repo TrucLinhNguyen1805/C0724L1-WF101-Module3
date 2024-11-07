@@ -29,7 +29,7 @@ const element5 = React.createElement(
   'Cần Thơ',
 );
 const divElement = React.createElement(
-  'div',
+  'ul',
   null,
   "Tạo danh sách các thành phố trực thuộc trung ương của Việt Nam",
   element1,
