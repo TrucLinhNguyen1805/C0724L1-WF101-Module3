@@ -51,7 +51,7 @@ class ListComponent extends React.Component{
                     </thead>
                     <tbody>
                     {this.state.studentList.map((e, i) => (
-                        <tr>
+                        <tr key={e.name}>
                             <td>{e.name}</td>
                             <td>{e.phone}</td>
                             <td>{e.email}</td>

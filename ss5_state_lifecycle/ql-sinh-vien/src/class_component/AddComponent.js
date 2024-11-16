@@ -1,5 +1,5 @@
 import React from "react";
-import { addNewStudent, getAllCustomer } from "../service/studentService";
+import { addNewStudent} from "../service/studentService";
 
 
 class AddComponent extends React.Component{
@@ -16,7 +16,6 @@ class AddComponent extends React.Component{
         this.handleOnChange = this.handleOnChange.bind(this);
     }
     handleSave(){
-        console.log("-----save---------")
         // goi api thêm mới
         addNewStudent(this.state.student);
         this.props.handleAddSuccess();
