@@ -16,7 +16,6 @@ const studentList = [
     }
   ]
   export function getAllStudent() {
-    // kết nối API của back-end
         return studentList;
     }
     

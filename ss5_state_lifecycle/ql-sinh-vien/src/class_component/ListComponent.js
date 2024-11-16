@@ -14,8 +14,6 @@ class ListComponent extends React.Component{
     }
     // sau khi render lần đầu tiên thì hàm sẽ chạy để lấy dữ liệu
     componentDidMount() {
-        // fetch data từ backend
-        console.log("------componentDidMount run--")
         this.setState((preState) => ({
             ...preState,
             studentList: [...getAllStudent()]
@@ -37,13 +35,10 @@ class ListComponent extends React.Component{
             isAddSuccess: true,
         }))
     }
-
-
     render(){
        return(
         <>
                 <AddComponent handleAddSuccess={this.handleAddSuccess.bind(this)}/>
-
                 <table className={'table table-gray'}>
                     <thead>
                     <tr>
@@ -56,7 +51,7 @@ class ListComponent extends React.Component{
                     </thead>
                     <tbody>
                     {this.state.studentList.map((e, i) => (
-                        <tr key={e.name}>
+                        <tr>
                             <td>{e.name}</td>
                             <td>{e.phone}</td>
                             <td>{e.email}</td>
