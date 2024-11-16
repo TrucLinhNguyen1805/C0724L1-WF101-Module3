@@ -1,5 +1,5 @@
 import React from "react";
-import { addNewStudent} from "../service/studentService";
+import { addNewStudent, getAllStudent} from "../service/studentService";
 
 
 class AddComponent extends React.Component{
@@ -22,8 +22,8 @@ class AddComponent extends React.Component{
 
     }
     handleOnChange(event){
-        console.log(event.target.name)
-        console.log(event.target.value)
+        // console.log(event.target.name)
+        // console.log(event.target.value)
         this.setState((preState)=>({
             ...preState,
             student:{
@@ -37,7 +37,8 @@ class AddComponent extends React.Component{
 
     render() {
         return (
-            <>
+            <> {console.log("=============add render============")
+}
                 <h2>Add Student</h2>
                 <form>
                     Name:

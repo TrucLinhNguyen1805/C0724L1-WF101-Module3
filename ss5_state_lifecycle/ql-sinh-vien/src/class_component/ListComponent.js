@@ -32,7 +32,7 @@ class ListComponent extends React.Component{
     handleAddSuccess() {
         this.setState((pre) => ({
             ...pre,
-            isAddSuccess: true,
+            isAddSuccess: !pre.isAddSuccess,
         }))
     }
     render(){
