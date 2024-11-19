@@ -19,6 +19,13 @@ class AddComponent extends React.Component{
         // goi api thêm mới
         addNewStudent(this.state.student);
         this.props.handleAddSuccess();
+        this.setState({
+            student: {
+                name: "",
+                phone: "",
+                email: ""
+            }
+        });
 
     }
     handleOnChange(event){
@@ -42,15 +49,15 @@ class AddComponent extends React.Component{
                 <h2>Add Student</h2>
                 <form>
                     Name:
-                    <input name={'name'} onChange={(event)=>{
+                    <input name={'name'} value={this.state.student.name} onChange={(event)=>{
                         this.handleOnChange(event)
                     }}/><br></br>
                     Phone:
-                    <input name={'phone'} onChange={(event)=>{
+                    <input name={'phone'} value={this.state.student.phone} onChange={(event)=>{
                         this.handleOnChange(event)
                     }}/><br></br>
                     Email:
-                    <input name={'email'} onChange={(event)=>{
+                    <input name={'email'} value={this.state.student.email} onChange={(event)=>{
                         this.handleOnChange(event)
                     }}/><br></br>
                     <button className={'btn btn-sm btn-primary'} onClick={this.handleSave} type="button">Save</button>

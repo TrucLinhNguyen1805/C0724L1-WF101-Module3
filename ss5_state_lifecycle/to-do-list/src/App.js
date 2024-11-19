@@ -34,7 +34,7 @@ class App extends Component {
           type="text"
           value={this.state.item}
           onChange={this.handleChange}
-          placeholder="Nhập công việc..."
+          placeholder="Nhập công việc"
         />
         {/* Nút thêm item */}
         <button onClick={this.handleAddItem}>Add</button>
