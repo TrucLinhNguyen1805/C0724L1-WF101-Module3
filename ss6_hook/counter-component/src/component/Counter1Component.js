@@ -1,5 +1,5 @@
 import React from "react";
-import useIncrement from "../AddCounter";
+import useIncrement from "./AddCounter";
 function Counter1Component (){
     const [count, increase] = useIncrement(1);
     return(
