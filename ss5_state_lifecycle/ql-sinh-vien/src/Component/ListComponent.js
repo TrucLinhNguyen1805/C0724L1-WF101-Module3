@@ -1,17 +1,24 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { getAllStudent, searchByName } from "../service/studentService";
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap';
 import AddComponent from "./AddComponent";
 import DeleteComponent from "./DeleteComponent";
+import DetailComponent from "./DetailComponent";
+import EditComponent from "./EditComponent"
 
 
 const ListComponent = () => {
     const [studentList, setStudentList] = useState([]);
     const [isLoading,setIsLoading] = useState(false);
     const [isShowModal,setIsShowModal] = useState(false);
+    const [isShowDetail, setIsShowDetail] = useState(false);
+    const [isShowEdit, setIsShowEdit] = useState(false);
     const [deleteStudent,setDeleteStudent] = useState({});
+    const [detailStudent, setDetailStudent] = useState({});
+    const [editStudent, setEditStudent] = useState({});
     const searchNameRef = useRef();
+
     useEffect(()=>{
         setStudentList(()=>(
             [
@@ -25,9 +32,9 @@ const ListComponent = () => {
         }));
         setIsShowModal(prevState=> !prevState);
     }
-    const handleIsLoading = ()=>{
+    const handleIsLoading = useCallback(()=>{
         setIsLoading((prevState) => !prevState)
-    }
+    }, []) 
     const handleSearch = ()=>{
         const searchName = searchNameRef.current.value;
         const listSearch = searchByName(searchName)
@@ -35,9 +42,27 @@ const ListComponent = () => {
             ...listSearch
         ])
     }
-    const handleCloseModal=()=>{
+    const handleCloseModal= useCallback(()=>{
        setIsShowModal (prevState=> !prevState);
+    },[]);
+    const handleDetail = (students)=>{
+        setDetailStudent(()=>({
+            ...students 
+        }));
+        setIsShowDetail(prevState=> !prevState);
     }
+    const handleCloseDetail= useCallback(()=>{
+        setIsShowDetail(prevState=> !prevState);
+     },[]);
+    const handleEdit = (students)=>{
+        setEditStudent(()=>({
+            ...students 
+        }));
+        setIsShowEdit(prevState=> !prevState);
+    }
+    const handleCloseEdit= useCallback(()=>{
+        setIsShowEdit(prevState=> !prevState);
+     },[]);
     return(
         <>
                 <AddComponent handleIsLoading = {handleIsLoading}/>
@@ -65,19 +90,30 @@ const ListComponent = () => {
                             <td>{e.phone}</td>
                             <td>{e.email}</td>
                             <td>
-                                <button className={'btn btn-sm btn-success'}>Edit
+                                <button onClick={()=>{
+                                    handleEdit(e)
+                                }} className={'btn btn-sm btn-success'}>Edit
                                 </button>
                             </td>
                             <td>
                                 <button onClick={()=>{handleShowModal(e)}} className={'btn btn-sm btn-danger'}>Delete
                                 </button> 
                             </td>
+                            <td>
+                                <button onClick={()=>{
+                                    handleDetail(e)
+                                }} className={'btn btn-sm btn-success'}>Detail
+                                </button>
+                            </td>
                         </tr>
                     ))}
                     </tbody>
                 </table>
                 <DeleteComponent handleIsLoading={handleIsLoading} handleShowModal={handleShowModal} isShowModal={isShowModal} deleteStudent={deleteStudent} handleCloseModal={handleCloseModal}/>
+                <DetailComponent isShowDetail={isShowDetail} detailStudent={detailStudent} handleCloseDetail={handleCloseDetail}/>
+                <EditComponent isShowEdit={isShowEdit} editStudent={editStudent} handleCloseEdit={handleCloseEdit} />
             </>
     )
 }
 export default ListComponent;
+

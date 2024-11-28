@@ -35,4 +35,4 @@ function DeleteComponent ({isShowModal, deleteStudent, handleCloseModal,handleIs
     }
 
 
-export default DeleteComponent;
+export default React.memo(DeleteComponent) ; //HOC (High Order Component)

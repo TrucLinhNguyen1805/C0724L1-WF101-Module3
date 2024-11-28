@@ -31,4 +31,6 @@ function AddComponent({handleIsLoading}){
         </>
     )
 }
-export default AddComponent;
+export default React.memo(AddComponent);
+
+//mục đích của việc sử dụng React.memo() là để tránh render lại những conponent con không cần thiết
