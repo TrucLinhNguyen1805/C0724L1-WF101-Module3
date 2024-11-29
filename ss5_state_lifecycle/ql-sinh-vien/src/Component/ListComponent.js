@@ -6,11 +6,12 @@ import AddComponent from "./AddComponent";
 import DeleteComponent from "./DeleteComponent";
 import DetailComponent from "./DetailComponent";
 import EditComponent from "./EditComponent"
+import {Link} from 'react-router-dom'
 
 
 const ListComponent = () => {
     const [studentList, setStudentList] = useState([]);
-    const [isLoading,setIsLoading] = useState(false);
+    // const [isLoading,setIsLoading] = useState(false);
     const [isShowModal,setIsShowModal] = useState(false);
     const [isShowDetail, setIsShowDetail] = useState(false);
     const [isShowEdit, setIsShowEdit] = useState(false);
@@ -25,16 +26,16 @@ const ListComponent = () => {
                 ...getAllStudent()
             ]
         ))
-    }, [isLoading]);
+    }, []);
     const handleShowModal = (students)=>{
         setDeleteStudent(()=>({
             ...students 
         }));
         setIsShowModal(prevState=> !prevState);
     }
-    const handleIsLoading = useCallback(()=>{
-        setIsLoading((prevState) => !prevState)
-    }, []) 
+    // const handleIsLoading = useCallback(()=>{
+    //     setIsLoading((prevState) => !prevState)
+    // }, []) 
     const handleSearch = ()=>{
         const searchName = searchNameRef.current.value;
         const listSearch = searchByName(searchName)
@@ -65,9 +66,13 @@ const ListComponent = () => {
      },[]);
     return(
         <>
-                <AddComponent handleIsLoading = {handleIsLoading}/>
+                {/* <AddComponent handleIsLoading = {handleIsLoading}/> */}
                 <h2>Student List</h2>
+                <button className={'btn btn-sm btn-success'}>
+                    <Link style={{ color: 'white', textDecoration: 'none' }} to={'/student/create'}>Add new Product</Link>
+                </button>
                 <form>
+                    <br></br>
                     <input placeholder="Search" ref={searchNameRef}/>
                     <button className={'btn btn-sm btn-success'} type="button" onClick={handleSearch}>Search</button>
                 </form>
@@ -109,7 +114,7 @@ const ListComponent = () => {
                     ))}
                     </tbody>
                 </table>
-                <DeleteComponent handleIsLoading={handleIsLoading} handleShowModal={handleShowModal} isShowModal={isShowModal} deleteStudent={deleteStudent} handleCloseModal={handleCloseModal}/>
+                <DeleteComponent handleShowModal={handleShowModal} isShowModal={isShowModal} deleteStudent={deleteStudent} handleCloseModal={handleCloseModal}/>
                 <DetailComponent isShowDetail={isShowDetail} detailStudent={detailStudent} handleCloseDetail={handleCloseDetail}/>
                 <EditComponent isShowEdit={isShowEdit} editStudent={editStudent} handleCloseEdit={handleCloseEdit} />
             </>
