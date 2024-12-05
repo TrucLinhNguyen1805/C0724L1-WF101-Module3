@@ -1,4 +1,4 @@
-const employees = [
+const employeeList= [
     {
         id: 1,
         name: "Hoa",
@@ -16,5 +16,5 @@ const employees = [
     },
 ]
 export function getAllEmployee() {
-    return employees;
+    return employeeList;
 }

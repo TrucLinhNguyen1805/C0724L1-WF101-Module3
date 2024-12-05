@@ -1,7 +1,8 @@
 import React,{useState, useEffect} from 'react'
-import { getAllEmployee } from '../service/employeeService';
+import { getAllEmployee } from '../service/employeeService'
+import 'bootstrap/dist/css/bootstrap.min.css'
+import 'bootstrap/dist/js/bootstrap.min'
 function ListComponent(){
-    function ListComponent(){
         const [employeeList, setEmployeeList] = useState([]);
         useEffect(()=>{
             setEmployeeList(()=>(
@@ -15,9 +16,6 @@ function ListComponent(){
         <>
                 
                 <h2>Employee List</h2>
-                {/* <button className={'btn btn-sm btn-success'}>
-                    <Link style={{ color: 'white', textDecoration: 'none' }} to={'/student/create'}>Add new Product</Link>
-                </button> */}
                 
                 <table className={'table table-gray'}>
                     <thead>
@@ -37,16 +35,10 @@ function ListComponent(){
                             <td>{e.age}</td>
                     
                             <td>
-                                <button  className={'btn btn-sm btn-primary'}>Edit
+                                <button  className={'btn btn-sm btn-primary'}>Detail
                                 </button>
                             </td>
-                            <td>
-                                <button  className={'btn btn-sm btn-danger'}>Delete
-                                </button> 
-                            </td>
-                            <td>
-                            {/* <Link to={'/products/detail/'+e.id} className={'btn btn-secondary btn-sm'}>Detail</Link> */}
-                            </td>
+                           
                         </tr>
                     ))}
                     </tbody>
@@ -54,6 +46,5 @@ function ListComponent(){
                 
             </>
     )
-}
 }
 export default ListComponent;
