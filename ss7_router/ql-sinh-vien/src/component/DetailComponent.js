@@ -8,10 +8,13 @@ function DetailComponent(){
     const {id} = useParams();// useLocal() => truyền một đối tượng
 
     useEffect(()=>{
-        setStudent(()=>({
-            ... getStudentById(id)
-        }));
+        const fetData = async()=>{
+            let p = await getStudentById(id);
+            setStudent(p);
+        }
+        fetData();
     },[])
+    
     return(
         <>
         <div class="detail-container">

@@ -6,11 +6,13 @@ import {Routes,Route} from "react-router-dom"
 // import AddComponent from './component/AddComponent';
 import DetailComponent from './component/DetailComponent';
 import AddComponentForm from './component/AddComponentForm';
+import { ToastContainer } from 'react-toastify';
 
 
 function App() {
   return (
     <>
+        <ToastContainer/>
         <HeaderComponent/>
         <Routes>
             <Route path='/student' element={<ListComponent/>}></Route>
